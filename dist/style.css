@@ -1,0 +1,50 @@
+:root {
+    --bg: #535554;
+    --olive: #73746c;
+    --grey: #646c6b;
+    --pale: #969e9e;
+    --shell: #c2c8c8;
+    --text: #454a47;
+}
+
+main {
+    background-color: var(--bg);
+    font-family: 'Courier New', Courier, monospace;
+
+}
+
+header {
+    background-color: var(--olive);
+    border-bottom: 3px double var(--pale);
+    color: var(--pale);
+    font-family: 'Courier New', Courier, monospace;
+
+}
+
+.custom-card {
+    background-color: var(--grey);
+    border: 3px double var(--pale);
+    border-radius: 0.25rem;
+    color: var(--text);
+}
+
+.custom-card-header {
+    background-color: var(--olive);
+    border-bottom: 2px double var(--pale);
+}
+
+.custom-ul {
+    border: 1px solid var(--text);
+    border-radius: 0.25rem;
+}
+
+.custom-list {
+    background-color: var(--olive);
+    position: relative;
+    display: block;
+    padding: .75rem 1.25rem;
+}
+
+.custom-border {
+    border-bottom: 1px solid var(--text);
+}
