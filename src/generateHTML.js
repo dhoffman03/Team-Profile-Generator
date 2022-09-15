@@ -30,7 +30,7 @@ const generateEngineer = (engineer) => {
       <ul class="list-group list-group-flush">
         <li id="id" class="custom-list custom-border">ID: ${engineer.id}</li>
         <li id="email" class="custom-list custom-border">Email: <a class="custom-link" href="mailto:${engineer.email}">${engineer.email}</a></li>
-        <li id="giithub" class="custom-list">Github: <a class="custom-link" href="https://github.com/${engineer.github}">/${engineer.github}</a></li>
+        <li id="giithub" class="custom-list">Github: <a class="custom-link" href="https://github.com/${engineer.github}">${engineer.github}</a></li>
       </ul>
     </div>
   </div>
@@ -104,7 +104,7 @@ const generateTeamProfile = (employeeCards) => {
 </head>
 
 
-<body>
+<body class="body">
   <header class="d-flex flex-wrap justify-content-center p-3">
     <h1>Team Profile</h1>
   </header>

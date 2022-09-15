@@ -7,16 +7,16 @@
     --text: #454a47;
 }
 
-main {
-    background-color: var(--bg);
-    font-family: 'Courier New', Courier, monospace;
-
-}
-
 header {
     background-color: var(--olive);
     border-bottom: 3px double var(--pale);
     color: var(--pale);
+    font-family: 'Courier New', Courier, monospace;
+
+}
+
+.body {
+    background-color: var(--bg);
     font-family: 'Courier New', Courier, monospace;
 
 }
@@ -42,7 +42,7 @@ header {
     background-color: var(--olive);
     position: relative;
     display: block;
-    padding: .75rem 1.25rem;
+    padding: 20px 10px;
 }
 
 .custom-link {
