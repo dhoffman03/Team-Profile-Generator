@@ -91,25 +91,6 @@ const addManager = () => {
         })
 };
 
-// Ask if user wants to add team members
-const addTeamMembers = () => {
-    return inquirer
-        .prompt([
-            {
-                type: 'list',
-                name: 'what_next',
-                message: 'What would yo like to do next?',
-                choices: ['Add Employee', 'Finished building team!']
-            },
-        ])
-        .then((val) => {
-            if (val.what_next === 'Add Employee') {
-                addEmployee()
-            } else if (val.what_next === 'Finished building team!') {
-                return teamMembers
-            }
-        })
-}
 
 // Start employee prompts
 const addEmployee = () => {
@@ -198,11 +179,10 @@ const addEmployee = () => {
             },
         },
 
-        // Ask if user wants to add additional team members
         {
             type: 'confirm',
             name: 'confirmAddEmployee',
-            message: 'Would you like to add more team members?',
+            message: 'Would you like to add additional team members?',
             default: false
         },
     ])
@@ -243,7 +223,7 @@ const writeToFile = data => {
 // Function to initialize app
 const init = () => {
     addManager()
-        .then(addTeamMembers)
+        .then(addEmployee)
         .then(teamMembers => {
             return generateHTML(teamMembers);
         })
