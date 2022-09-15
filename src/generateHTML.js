@@ -9,7 +9,7 @@ const generateManager = (manager) => {
     <div class="m-4 custom-ul">
       <ul class="list-group list-group-flush">
         <li id="id" class="custom-list custom-border">ID: ${manager.id}</li>
-        <li id="email" class="custom-list custom-border">Email: <a href="mailto:${manager.email}">${manager.email}</a></li>
+        <li id="email" class="custom-list custom-border">Email: <a class="custom-link" href="mailto:${manager.email}">${manager.email}</a></li>
         <li id="office" class="custom-list">Office Number: ${manager.officeNum}</li>
       </ul>
     </div>
@@ -29,8 +29,8 @@ const generateEngineer = (engineer) => {
     <div class="m-4 custom-ul">
       <ul class="list-group list-group-flush">
         <li id="id" class="custom-list custom-border">ID: ${engineer.id}</li>
-        <li id="email" class="custom-list custom-border">Email: <a href="mailto:${engineer.email}">${engineer.email}</a></li>
-        <li id="giithub" class="custom-list">Github: <a href="https://github.com/${engineer.github}">/${engineer.github}</a></li>
+        <li id="email" class="custom-list custom-border">Email: <a class="custom-link" href="mailto:${engineer.email}">${engineer.email}</a></li>
+        <li id="giithub" class="custom-list">Github: <a class="custom-link" href="https://github.com/${engineer.github}">/${engineer.github}</a></li>
       </ul>
     </div>
   </div>
@@ -49,7 +49,7 @@ const generateIntern = (intern) => {
     <div class="m-4 custom-ul">
       <ul class="list-group list-group-flush">
         <li id="id" class="custom-list custom-border">ID: ${intern.id}</li>
-        <li id="email" class="custom-list custom-border">Email: <a href="mailto:${intern.email}">${intern.email}</a></li>
+        <li id="email" class="custom-list custom-border">Email: <a class="custom-link" href="mailto:${intern.email}">${intern.email}</a></li>
         <li id="school" class="custom-list">School: ${intern.school}</li>
       </ul>
     </div>

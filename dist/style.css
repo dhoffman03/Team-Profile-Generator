@@ -45,6 +45,9 @@ header {
     padding: .75rem 1.25rem;
 }
 
+.custom-link {
+    color: #91aba3;
+}
 .custom-border {
     border-bottom: 1px solid var(--text);
 }
