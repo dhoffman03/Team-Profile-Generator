@@ -29,8 +29,8 @@ const generateEngineer = (engineer) => {
     <div class="m-4 custom-ul">
       <ul class="list-group list-group-flush">
         <li id="id" class="custom-list custom-border">ID: ${engineer.id}</li>
-        <li id="email" class="custom-list custom-border">Email: mailto:${.email}<a href="">${engineer.email}</a></li>
-        <li id="giithub" class="custom-list">Github: <a href="https://github.com/${engineer.github}">GitHub: ${engineer.github}</a></li>
+        <li id="email" class="custom-list custom-border">Email: <a href="mailto:${engineer.email}">${engineer.email}</a></li>
+        <li id="giithub" class="custom-list">Github: <a href="https://github.com/${engineer.github}">/${engineer.github}</a></li>
       </ul>
     </div>
   </div>
@@ -58,13 +58,39 @@ const generateIntern = (intern) => {
 }
 
 
-// Push array
+// Push to array
 generateHTML = (data) => {
 
+    teamProfile = [];
+
+    for (let i = 0; i < data.length; i++) {
+        const employee = data[i];
+        const role = employee.getRole();
+
+        if (role === 'Manager') {
+            const managerCard = generateManager(employee);
+            teamProfile.push(managerCard);
+        }
+
+        if (role === 'Engineer') {
+            const engineerCard = generateEngineer(employee);
+            teamProfile.push(engineerCard);
+        }
+
+        if (role === 'Intern') {
+            const internCard = generateIntern(employee);
+            teamProfile.push(internCard);
+        }
+    }
+
+    const employeeCards = teamProfile.join('')
+
+    const generateTeam = generateTeamProfile(employeeCards);
+    return generateTeam;
 }
 
 // GenerateHTML page
-const generatePage = (employeeCards) => {
+const generateTeamProfile = (employeeCards) => {
     return `
     <!DOCTYPE html>
 <html lang=“en”>
@@ -87,7 +113,7 @@ const generatePage = (employeeCards) => {
 
     <div class="container">
       <div class="d-flex flex-wrap justify-content-center pt-5">
-        <---Team Cards-->
+        <!---Team Cards-->
         ${employeeCards}
       </div>
     </div>

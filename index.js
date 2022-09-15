@@ -10,10 +10,10 @@ const Intern = require("./lib/Intern");
 const fs = require("fs");
 const inquirer = require("inquirer");
 
-// Team array
+// Array of team members
 const teamMembers = []
 
-// Add manager
+// Start manager prompts
 const addManager = () => {
     return inquirer.prompt([
         {
@@ -22,6 +22,7 @@ const addManager = () => {
             message: 'Welcome to Team Profile Generator! Are you ready to build your team?',
             default: true,
         },
+
         {
             type: 'input',
             name: 'name',
@@ -34,8 +35,8 @@ const addManager = () => {
                     return false;
                 }
             },
-
         },
+
         {
             type: 'input',
             name: 'id',
@@ -50,6 +51,7 @@ const addManager = () => {
                 }
             },
         },
+
         {
             type: 'input',
             name: 'email',
@@ -64,6 +66,7 @@ const addManager = () => {
                 }
             },
         },
+
         {
             type: 'input',
             name: 'officeNum',
@@ -76,9 +79,9 @@ const addManager = () => {
                     return true;
                 }
             },
-
         },
     ])
+        // Add manager to array of team members
         .then(managerData => {
             const { name, id, email, officeNum } = managerData;
             const manager = new Manager(name, id, email, officeNum);
@@ -88,18 +91,37 @@ const addManager = () => {
         })
 };
 
-//const employeeChoice = () => {}
+// Ask if user wants to add team members
+const addTeamMembers = () => {
+    return inquirer
+        .prompt([
+            {
+                type: 'list',
+                name: 'what_next',
+                message: 'What would yo like to do next?',
+                choices: ['Add Employee', 'Finished building team!']
+            },
+        ])
+        .then((val) => {
+            if (val.what_next === 'Add Employee') {
+                addEmployee()
+            } else if (val.what_next === 'Finished building team!') {
+                return teamMembers
+            }
+        })
+}
 
-
-// Add employee
+// Start employee prompts
 const addEmployee = () => {
     return inquirer.prompt([
+        // Choose type of employee
         {
             type: 'list',
             name: 'role',
             message: 'What type of employee would you like to add?',
             choices: ['Engineer', 'Intern']
         },
+
         {
             type: 'input',
             name: 'name',
@@ -143,6 +165,8 @@ const addEmployee = () => {
                 }
             },
         },
+
+        // If role is engineer ask for github username
         {
             type: 'input',
             name: 'github',
@@ -158,6 +182,7 @@ const addEmployee = () => {
             },
         },
 
+        // If role is intern ask for school name
         {
             type: 'input',
             name: 'school',
@@ -172,6 +197,8 @@ const addEmployee = () => {
                 }
             },
         },
+
+        // Ask if user wants to add additional team members
         {
             type: 'confirm',
             name: 'confirmAddEmployee',
@@ -179,7 +206,7 @@ const addEmployee = () => {
             default: false
         },
     ])
-
+        // add employees to teamMembers[]
         .then(employeeData => {
             let { name, id, email, role, github, school, confirmAddEmployee } = employeeData;
             let employee;
@@ -197,7 +224,7 @@ const addEmployee = () => {
 
             }
 
-
+            // If user chooses to add more mebers, run addEmployee()
             if (confirmAddEmployee) {
                 return addEmployee(teamMembers);
             } else {
@@ -208,7 +235,7 @@ const addEmployee = () => {
 
 // Generate HTML page using file system
 const writeToFile = data => {
-    fs.writeFile('README.md', data, (err) =>
+    fs.writeFile('./dist/index.html', data, (err) =>
         err ? console.log(err) : console.log('Your team profile has been sucessfully added to the index.html!')
     );
 }
@@ -216,12 +243,12 @@ const writeToFile = data => {
 // Function to initialize app
 const init = () => {
     addManager()
-        .then(addEmployee)
+        .then(addTeamMembers)
         .then(teamMembers => {
             return generateHTML(teamMembers);
         })
-        .then(pageHTML => {
-            return writeToFile();
+        .then(data => {
+            return writeToFile(data);
         })
         // Catch errors
         .catch(err => {
@@ -229,5 +256,5 @@ const init = () => {
         })
 }
 
-// Callinitalize function
+// Call initalize function
 init();
